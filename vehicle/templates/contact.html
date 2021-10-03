@@ -1,0 +1,17 @@
+{% extends 'header.html' %}
+{% block content %}
+{% include 'navigation.html'%}
+<div class="contact-section">
+  <h1>Contact Us</h1>
+  <div class="border"></div>
+  <form class="contact-form" action="index.html" method="post">
+    <input type="text" class="contact-form-text" placeholder="Your name">
+    <input type="email" class="contact-form-text" placeholder="Your email">
+    <input type="text" class="contact-form-text" placeholder="Your phone">
+    <textarea class="contact-form-text" placeholder="Your message"></textarea>
+    <a class = "btn btn-secondary" type= "button" href="{% url 'thankyou'%}">Send</a>
+  
+    
+  </form>
+</div>
+{% endblock %}
