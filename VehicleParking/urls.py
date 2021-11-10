@@ -27,7 +27,7 @@ urlpatterns = [
     path('admin_home',admin_home,name='admin_home'),
     path('logout',Logout,name='logout'),
     path('change_',thankyou, name= 'thankyou'),
-    path('contpassword',change_password,name='change_password'),
+    
     path('add_category',add_category,name='add_category'),
     path('manage_category',manage_category,name='manage_category'),
     path('delete_category/<int:pid>', delete_category,name='delete_category'),

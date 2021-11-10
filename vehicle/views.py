@@ -57,25 +57,6 @@ def Logout(request):
     return redirect('index')
 
 
-def change_password(request):
-    if not request.user.is_authenticated:
-        return redirect('admin_login')
-    error = ""
-    if request.method == "POST":
-        o = request.POST['password']
-        n = request.POST['newpassword']
-        try:
-            u = User.objects.get(id=request.user.id)
-            if u.check_password(o):
-                u.set_password(n)
-                u.save()
-                error = "no"
-            else:
-                error = "not"
-        except:
-            error = "yes"
-    d = {'error': error}
-    return render(request,'change_password.html',d)
 
 
 def add_category(request):
