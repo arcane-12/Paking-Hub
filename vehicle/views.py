@@ -9,18 +9,22 @@ from datetime import datetime, timedelta, time
 import random
 # Create your views here.
 
+# Landing page
 def Index(request):
     return render(request, 'index.html')
 
+# contact us page
 def contact(request):
     return render(request, 'contact.html')
-    
+
+#thankyou page   
 def thankyou(request):
     return render(request,'thankyou.html')
 
+# admin login page
 def admin_login(request):
     error = " "
-    if request.method == 'POST':
+    if request.method == 'POST':    
         u = request.POST['username']
         p = request.POST['password']
         user = authenticate(username=u, password=p)
@@ -35,7 +39,7 @@ def admin_login(request):
     d = {'error': error}
     return render(request, 'admin_login.html', d)
 
-
+#admin homepage
 def admin_home(request):
     if not request.user.is_authenticated:
         return redirect('admin_login')
@@ -45,8 +49,8 @@ def admin_home(request):
 
     tv = Vehicle.objects.filter(pdate=today).count()
     yv = Vehicle.objects.filter(pdate=yesterday).count()
-    ls = Vehicle.objects.filter(pdate__gte=lasts,pdate__lte=today).count()
-    totalv = Vehicle.objects.all().count()
+    ls = Vehicle.objects.filter(pdate__gte=lasts,pdate__lte=today).count() #lte =less than or equal to
+    totalv = Vehicle.objects.all().count()                                  #gte=  greater than or equal to
 
     d = {'tv':tv,'yv':yv,'ls':ls,'totalv':totalv}
     return render(request,'admin_home.html',d)
@@ -122,7 +126,7 @@ def add_vehicle(request):
         category = Category.objects.get(categoryname=ct)
 
         try:
-            Vehicle.objects.create(parkingnumber=pn,category=category,vehiclecompany=vc,regno=rn,ownername=on,ownercontact=oc,pdate=pd,intime=it,outtime='',parkingcharge='',remark='',status=status)
+            Vehicle.objects.create(parkingnumber=pn,category=category,vehiclecompany=vc,regno=rn,ownername=on,ownercontact=oc,pdate=pd,intime=it,outtime='',parkingcharge='',status=status)
             error = "no"
         except:
             error = "yes"
@@ -142,12 +146,10 @@ def view_incomingdetail(request,pid):
     error = ""
     vehicle = Vehicle.objects.get(id=pid)
     if request.method == 'POST':
-        rm = request.POST['remark']
         ot = request.POST['outtime']
         pc = request.POST['parkingcharge']
         status = "Out"
         try:
-            vehicle.remark = rm
             vehicle.outtime = ot
             vehicle.parkingcharge = pc
             vehicle.status = status

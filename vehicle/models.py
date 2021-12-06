@@ -20,7 +20,7 @@ class Vehicle(models.Model):
     intime = models.CharField(max_length=50)
     outtime = models.CharField(max_length=50)
     parkingcharge = models.CharField(max_length=50)
-    remark = models.CharField(max_length=500)
+   
     status = models.CharField(max_length=20)
     def __str__(self):
         return self.parkingnumber

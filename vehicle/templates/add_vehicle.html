@@ -10,7 +10,7 @@
 
 
 <div class="container" style = "margin-top:50px">
-<h2 class="text-center" style = "font-family : sans-serif; color : #6c8693">Add Vehicle Detail</h2>
+<h2 class="text-center" style = "font-family : sans-serif; color : #001f3f">Add Vehicle Detail</h2>
 
 <div class="form-group">
 <form method = post enctype = "multipart/form-data">
@@ -42,7 +42,7 @@
     <label  ><b>In Time</b></label>
     <input type="time"  name="intime" placeholder="In Time" class="form-control" required="">
 <br>
-<input type = submit name = submit value = "Submit" class="btn btn-secondary form-control" >
+<input type = submit name = submit value = "Submit" class="btn btn-primary form-control" >
 </form>
 </div>
 
@@ -51,10 +51,14 @@
 </div>
 </body>
 </html>
+{% ifequal error "no" %}
+<script>
+    alert('Successfully Saved!');
+</script>
+{% endifequal %}
 
 {% ifequal error "yes" %}
 <script>
     alert('Something Went Wrong. Please try again');
 </script>
 {% endifequal %}
-
